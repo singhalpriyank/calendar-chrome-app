@@ -1,0 +1,65 @@
+<polymer-element name="x-calendar-day">
+	<template>
+		<style>
+			@host {
+				:scope {
+					display: block;
+				}
+			}
+
+			ul {
+				font-size: 10px;
+				font-family: Helvetica, sans-serif;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				text-align: right;
+			}
+
+			li {
+				border-bottom: 1px solid #bbb;
+			}
+
+			li:last-child {
+				border-bottom: 0;
+			}
+
+			span {
+				background-color: #f0f0f0;
+				display: block;
+				height: 45px;
+				padding: 2px;
+				width: 16px;
+			}
+		</style>
+		<ul class="hours">
+			<li><span>12<br>AM</span></li>
+			<li><span>1</span></li>
+			<li><span>2</span></li>
+			<li><span>3</span></li>
+			<li><span>4</span></li>
+			<li><span>5</span></li>
+			<li><span>6</span></li>
+			<li><span>7</span></li>
+			<li><span>8</span></li>
+			<li><span>9</span></li>
+			<li><span>10</span></li>
+			<li><span>11</span></li>
+			<li><span>12<br>PM</span></li>
+			<li><span>1</span></li>
+			<li><span>2</span></li>
+			<li><span>3</span></li>
+			<li><span>4</span></li>
+			<li><span>5</span></li>
+			<li><span>6</span></li>
+			<li><span>7</span></li>
+			<li><span>8</span></li>
+			<li><span>9</span></li>
+			<li><span>10</span></li>
+			<li><span>11</span></li>
+		</ul>
+	</template>
+	<script>
+		Polymer('x-calendar-day');
+	</script>
+</polymer-element>
