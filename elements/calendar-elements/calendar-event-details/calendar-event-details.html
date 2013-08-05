@@ -1,0 +1,76 @@
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-icon-button/polymer-ui-icon-button.html">
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-toggle-button/polymer-ui-toggle-button.html">
+
+<polymer-element name="calendar-event-details">
+	<template>
+		<style>
+			@host {
+				:scope {
+					display: block;
+				}
+			}
+
+			h2 {
+				margin-top: 0;
+				margin-bottom: 5px;
+			}
+
+			h3 {
+				margin-top: 0;
+			}
+
+			.wrapper {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+
+			.scrollable {
+				flex: 1;
+				font-size: 13px;
+				overflow-y: scroll;
+			}
+
+			.scrollable > div {
+				padding: 10px;
+			}
+
+			.header {
+				color: white;
+				text-align: center;
+			}
+		</style>
+
+		<div class="wrapper">
+			<polymer-ui-toolbar>
+				<div flex>
+					<polymer-ui-icon-button src="../assets/arrow_left.png"></polymer-ui-icon-button>
+				</div>
+				<div>
+					<polymer-ui-icon-button src="../assets/color-wheel.png"></polymer-ui-icon-button>
+					<polymer-ui-icon-button src="../assets/edit.png"></polymer-ui-icon-button>
+					<polymer-ui-icon-button icon="trash"></polymer-ui-icon-button>
+				</div>
+			</polymer-ui-toolbar>
+
+			<div class="scrollable">
+				<div class="header" style="background: red;">
+					<h2>Event Name</h2>
+					<span>Date | Time | Location</span>
+				</div>
+
+				<div>
+					<h3>Description</h3>
+					<p>
+						Lorem ipsum dolor sit amet, at paulo appareat consequuntur est, no salutandi dissentiet qui, dico nihil iriure ius ut.<br/><br/>Sonet corrumpit no eos, et atqui oblique minimum eum. Nec no nominavi quaestio, dolor deseruisse est in. Mea an accusata scribentur. Rebum graeci doctus eu eos. Te vel atqui audiam.<br/><br/>Ne vix omnis minim maiorum, augue senserit ex eam. Animal vidisse vel eu, soluta aperiri maluisset ut eos.<br/><br/>Ea inani melius incorrupte has, pri ea movet dolorem. Magna definiebas delicatissimi ex qui, urbanitas deterruisset no sit. Vero vocent convenire mea ne, qui in veri dicit.
+					</p>
+					<polymer-ui-toggle-button onCaption="Public" offCaption="Private" value="false"></polymer-ui-toggle-button>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		Polymer('calendar-event-details');
+	</script>
+</polymer-element>
