@@ -1,0 +1,85 @@
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-icon-button/polymer-ui-icon-button.html">
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
+<link rel="import" href="../../polymer-ui-elements/polymer-ui-toggle-button/polymer-ui-toggle-button.html">
+<link rel="import" href="../calendar-color-button/calendar-color-button.html">
+
+<polymer-element name="calendar-event-edit">
+	<template>
+		<style>
+			@host {
+				:scope {
+					display: block;
+				}
+			}
+
+			h2 {
+				margin-top: 0;
+				margin-bottom: 5px;
+			}
+
+			h3 {
+				margin-top: 0;
+			}
+
+			input,
+			label,
+			textarea {
+				display: block;
+				margin-bottom: 10px;
+				width: 100%;
+			}
+
+			.wrapper {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+
+			.scrollable {
+				flex: 1;
+				font-size: 13px;
+				overflow-y: scroll;
+			}
+
+			.scrollable > div {
+				padding: 10px;
+			}
+
+			.header {
+				color: white;
+				text-align: center;
+			}
+		</style>
+
+		<div class="wrapper">
+			<polymer-ui-toolbar>
+				<polymer-ui-icon-button icon="close"></polymer-ui-icon-button>
+				<div flex></div>
+				<polymer-ui-icon-button src="../assets/checkmark.png"></polymer-ui-icon-button>
+			</polymer-ui-toolbar>
+
+			<div class="scrollable">
+				<div class="header" style="background: red;">
+					<calendar-color-button></calendar-color-button>
+				</div>
+
+				<div>
+					<input placeholder="Event Name"></input>
+					<input placeholder="Location"></input>
+					<textarea placeholder="Description"></textarea>
+					<label>
+						From: <input type="datetime-local" placeholder="Start"></input>
+					</label>
+					<label>
+						To: <input type="datetime-local" placeholder="End"></input>
+					</label>
+					<polymer-ui-toggle-button onCaption="Public" offCaption="Private" value="false"></polymer-ui-toggle-button>
+				</div>
+			</div>
+		</div>
+		</style>
+  </template>
+  <script>
+    Polymer('calendar-event-edit');
+  </script>
+</polymer-element>
