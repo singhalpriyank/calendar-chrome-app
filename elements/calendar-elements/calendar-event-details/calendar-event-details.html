@@ -46,7 +46,7 @@
 		<div class="wrapper">
 			<polymer-ui-toolbar>
 				<div flex>
-					<polymer-ui-icon-button src="../assets/arrow_left.png"></polymer-ui-icon-button>
+					<polymer-ui-icon-button src="../assets/arrow_left.png" on-click="onBackClick"></polymer-ui-icon-button>
 				</div>
 				<div>
 					<calendar-color-button value="{{event.color}}"></calendar-color-button>
@@ -81,6 +81,9 @@
 			},
 			get start() {
 				return new Date(this.event.start).toLocaleTimeString();
+			},
+			onBackClick: function() {
+				this.fire('calendar-event-details-done');
 			}
 		});
 	</script>
