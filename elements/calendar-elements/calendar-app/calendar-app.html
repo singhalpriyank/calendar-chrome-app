@@ -1,5 +1,6 @@
 <link rel="import" href="../calendar-day-view/calendar-day-view.html">
 <link rel="import" href="../calendar-event-details/calendar-event-details.html">
+<link rel="import" href="../calendar-event-edit/calendar-event-edit.html">
 
 <polymer-element name="calendar-app">
 	<template>
@@ -28,11 +29,13 @@
 
 		<div class="wrapper">
 			<calendar-day-view id="calendar-day-view" events="{{events}}" start="{{viewStart}}" on-calendar-event-details="onCalendarEventDetails" class="{{hidden: selectedEvent.color}}"></calendar-day-view>
-			<calendar-event-details event="{{selectedEvent}}" on-calendar-event-details-done="onCalendarEventDetailsDone" class="{{hidden: !selectedEvent.color}}"></calendar-event-details>
+			<calendar-event-details event="{{selectedEvent}}" on-calendar-event-details-done="onCalendarEventDetailsDone"  on-calendar-event-details-edit="onCalendarEventDetailsEdit" class="{{hidden: !selectedEvent.color || editing}}"></calendar-event-details>
+			<calendar-event-edit event="{{selectedEvent}}" on-calendar-event-edit-done="onCalendarEventEditDone" class="{{hidden: !selectedEvent.color || !editing}}"></calendar-event-edit>
 		</div>
 	</template>
 	<script>
 		Polymer('calendar-app', {
+			editing: false,
 			events: [{
 				color: '#0066ff',
 				description: 'Test description',
@@ -73,6 +76,12 @@
 			},
 			onCalendarEventDetailsDone: function() {
 				this.selectedEvent = null;
+			},
+			onCalendarEventDetailsEdit: function() {
+				this.editing = true;
+			},
+			onCalendarEventEditDone: function() {
+				this.editing = false;
 			}
 		});
 	</script>

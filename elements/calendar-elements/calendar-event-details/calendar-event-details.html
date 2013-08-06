@@ -50,7 +50,7 @@
 				</div>
 				<div>
 					<calendar-color-button value="{{event.color}}"></calendar-color-button>
-					<polymer-ui-icon-button src="../assets/edit.png"></polymer-ui-icon-button>
+					<polymer-ui-icon-button src="../assets/edit.png" on-click="onEditClick"></polymer-ui-icon-button>
 					<polymer-ui-icon-button icon="trash"></polymer-ui-icon-button>
 				</div>
 			</polymer-ui-toolbar>
@@ -84,6 +84,9 @@
 			},
 			onBackClick: function() {
 				this.fire('calendar-event-details-done');
+			},
+			onEditClick: function() {
+				this.fire('calendar-event-details-edit');
 			}
 		});
 	</script>
