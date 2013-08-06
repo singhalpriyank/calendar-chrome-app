@@ -2,16 +2,23 @@
 <html>
 	<head>
 		<style>
-			calendar-day {
+			.wrapper {
 				border: 1px solid #bbb;
-				height: 400px;
+				width: 320px;
+			}
+
+			calendar-day {
 				width: 300px;
 			}
 		</style>
 		<script src="../../../lib/polymer.min.js"></script>
 		<link rel="import" href="calendar-day.html">
+		<link rel="import" href="../calendar-hours/calendar-hours.html">
 	</head>
 	<body>
-		<calendar-day></calendar-day>
+		<div class="wrapper">
+			<calendar-hours></calendar-hours><!--
+			--><calendar-day></calendar-day>
+		</div>
 	</body>
 </html>
