@@ -1,4 +1,4 @@
-<polymer-element name="calendar-day">
+<polymer-element name="calendar-day" attributes="start events">
 	<template>
 		<style>
 			@host {
@@ -22,35 +22,73 @@
 			li:last-child {
 				border-bottom: 0;
 			}
+
+			.wrapper {
+				color: #eee;
+				font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				font-size: 13px;
+				position: relative;
+			}
+
+			.event {
+				box-sizing: border-box;
+				padding: 1px;
+				position: absolute;
+				width: 100%;
+			}
+
+			.event-visible {
+				box-sizing: border-box;
+				height: 100%;
+				overflow: hidden;
+				padding: 4px;
+			}
+
+			.name {
+				font-weight: bold;
+			}
 		</style>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+		<div class="wrapper">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<template repeat="{{events as event}}">
+				<div class="event" style="height: {{event.duration * 5 / 6}}px; top: {{(event.start - start) * 5 / 360000}}px;">
+					<div class="event-visible" style="background-color: {{event.color}};">
+						<span class="name">{{event.name}}</span>
+						<span>{{event.location}}</span>
+					</div>
+				</div>
+			</template>
+		</div>
 	</template>
 	<script>
-		Polymer('calendar-day');
+		Polymer('calendar-day', {
+			start: 0,
+			events: []
+		});
 	</script>
 </polymer-element>

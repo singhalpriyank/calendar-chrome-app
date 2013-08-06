@@ -18,7 +18,30 @@
 	<body>
 		<div class="wrapper">
 			<calendar-hours></calendar-hours><!--
-			--><calendar-day></calendar-day>
+			--><calendar-day id="calendar" start="1375660800000"></calendar-day>
 		</div>
+		<script>
+			var events = [{
+				color: '#06f',
+				duration: 150,
+				location: 'Test Location 1',
+				name: 'Test Name 1',
+				start: 1375702200000
+			}, {
+				color: '#090',
+				duration: 30,
+				location: 'Test Location 2',
+				name: 'Test Name 2 test test test test test test test test',
+				start: 1375693200000
+			}, {
+				color: '#900',
+				duration: 90,
+				location: 'Test Location 3 test test test test test test test',
+				name: 'Test Name 3',
+				start: 1375696800000
+			}];
+
+			document.getElementById('calendar').events = events;
+		</script>
 	</body>
 </html>
