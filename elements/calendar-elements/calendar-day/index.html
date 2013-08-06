@@ -50,6 +50,9 @@
 			}];
 
 			document.getElementById('calendar').events = events;
+			document.getElementById('calendar').addEventListener('calendar-event-details', function(event) {
+				console.log(event.detail.event);
+			});
 		</script>
 	</body>
 </html>
