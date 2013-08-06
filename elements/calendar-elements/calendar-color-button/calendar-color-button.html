@@ -1,6 +1,6 @@
 <link rel="import" href="../../polymer-ui-elements/polymer-ui-icon-button/polymer-ui-icon-button.html">
 
-<polymer-element name="calendar-color-button">
+<polymer-element name="calendar-color-button" attributes="value">
 	<template>
 		<style>
 			@host {
@@ -31,7 +31,7 @@
 			}
 		</style>
 		<polymer-ui-icon-button>
-			<input type="color"></input>
+			<input type="color" value="{{value}}"></input>
 		</polymer-ui-icon-button>
 	</template>
 	<script>

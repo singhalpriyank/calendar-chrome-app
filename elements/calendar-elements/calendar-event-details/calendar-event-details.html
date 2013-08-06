@@ -3,7 +3,7 @@
 <link rel="import" href="../../polymer-ui-elements/polymer-ui-toggle-button/polymer-ui-toggle-button.html">
 <link rel="import" href="../calendar-color-button/calendar-color-button.html">
 
-<polymer-element name="calendar-event-details">
+<polymer-element name="calendar-event-details" attributes="event">
 	<template>
 		<style>
 			@host {
@@ -49,29 +49,39 @@
 					<polymer-ui-icon-button src="../assets/arrow_left.png"></polymer-ui-icon-button>
 				</div>
 				<div>
-					<calendar-color-button></calendar-color-button>
+					<calendar-color-button value="{{event.color}}"></calendar-color-button>
 					<polymer-ui-icon-button src="../assets/edit.png"></polymer-ui-icon-button>
 					<polymer-ui-icon-button icon="trash"></polymer-ui-icon-button>
 				</div>
 			</polymer-ui-toolbar>
 
 			<div class="scrollable">
-				<div class="header" style="background: red;">
-					<h2>Event Name</h2>
-					<span>Date | Time | Location</span>
+				<div class="header" style="background: {{event.color}};">
+					<h2>{{event.name}}</h2>
+					<div>{{date}} at {{start}} - {{end}}</div>
+					<div>{{event.location}}</div>
 				</div>
 
 				<div>
 					<h3>Description</h3>
-					<p>
-						Lorem ipsum dolor sit amet, at paulo appareat consequuntur est, no salutandi dissentiet qui, dico nihil iriure ius ut.<br/><br/>Sonet corrumpit no eos, et atqui oblique minimum eum. Nec no nominavi quaestio, dolor deseruisse est in. Mea an accusata scribentur. Rebum graeci doctus eu eos. Te vel atqui audiam.<br/><br/>Ne vix omnis minim maiorum, augue senserit ex eam. Animal vidisse vel eu, soluta aperiri maluisset ut eos.<br/><br/>Ea inani melius incorrupte has, pri ea movet dolorem. Magna definiebas delicatissimi ex qui, urbanitas deterruisset no sit. Vero vocent convenire mea ne, qui in veri dicit.
-					</p>
-					<polymer-ui-toggle-button onCaption="Public" offCaption="Private" value="false"></polymer-ui-toggle-button>
+					<p>{{event.description}}</p>
+					<polymer-ui-toggle-button onCaption="Public" offCaption="Private" value="{{event.isPublic}}"></polymer-ui-toggle-button>
 				</div>
 			</div>
 		</div>
 	</template>
 	<script>
-		Polymer('calendar-event-details');
+		Polymer('calendar-event-details', {
+			event: {},
+			get date() {
+				return new Date(this.event.start).toDateString();
+			},
+			get end() {
+				return new Date(this.event.start + this.event.duration * 60000).toLocaleTimeString();
+			},
+			get start() {
+				return new Date(this.event.start).toLocaleTimeString();
+			}
+		});
 	</script>
 </polymer-element>
