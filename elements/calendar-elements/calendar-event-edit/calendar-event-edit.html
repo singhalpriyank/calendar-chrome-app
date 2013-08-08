@@ -87,10 +87,12 @@
 		</style>
 	</template>
 	<script>
+		var BLANK_EVENT = {
+			duration: 0,
+			start: 0
+		};
 		Polymer('calendar-event-edit', {
-			event: {
-				start: 0
-			},
+			event: BLANK_EVENT,
 			get start() {
 				return new Date(this.event.start - new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0];
 			},

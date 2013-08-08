@@ -34,8 +34,12 @@
 		</div>
 	</template>
 	<script>
+		var BLANK_EVENT = {
+			duration: 0,
+			start: 0
+		};
 		Polymer('calendar-app', {
-			editingEvent: null,
+			editingEvent: BLANK_EVENT,
 			events: [{
 				color: '#0066ff',
 				description: 'Test description',
@@ -69,7 +73,7 @@
 				name: 'Test Name 4',
 				start: 1375684200000
 			}],
-			selectedEvent: null,
+			selectedEvent: BLANK_EVENT,
 			viewStart: 1375660800000,
 			eventsChanged: function() {
 				console.log('test');
@@ -78,16 +82,16 @@
 				this.selectedEvent = event.detail.event;
 			},
 			onCalendarEventDetailsDone: function() {
-				this.selectedEvent = null;
+				this.selectedEvent = BLANK_EVENT;
 				this.eventsChanged();
 			},
 			onCalendarEventDetailsEdit: function(event) {
-				this.selectedEvent = null;
+				this.selectedEvent = BLANK_EVENT;
 				this.editingEvent = event.detail.event;
 			},
 			onCalendarEventEditDone: function() {
 				this.selectedEvent = this.editingEvent;
-				this.editingEvent = null;
+				this.editingEvent = BLANK_EVENT;
 				this.eventsChanged();
 			}
 		});
