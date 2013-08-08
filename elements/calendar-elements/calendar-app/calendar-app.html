@@ -40,39 +40,7 @@
 		};
 		Polymer('calendar-app', {
 			editingEvent: BLANK_EVENT,
-			events: [{
-				color: '#0066ff',
-				description: 'Test description',
-				duration: 525,
-				isPublic: false,
-				location: 'Test Location 1',
-				name: 'Test Name 1',
-				start: 1375702200000
-			}, {
-				color: '#009900',
-				description: 'Test description',
-				duration: 30,
-				isPublic: true,
-				location: '',
-				name: 'Test Name 2 test test test test test test test test test the end',
-				start: 1375693200000
-			}, {
-				color: '#990000',
-				description: 'Test description',
-				duration: 90,
-				isPublic: false,
-				location: 'Test Location 3 test test test test test test test',
-				name: 'Test Name 3',
-				start: 1375696800000
-			}, {
-				color: '#990099',
-				description: 'Test description',
-				duration: 120,
-				isPublic: true,
-				location: 'Test Location 4',
-				name: 'Test Name 4',
-				start: 1375684200000
-			}],
+			events: [],
 			selectedEvent: BLANK_EVENT,
 			viewStart: 1375660800000,
 			eventsChanged: function() {
@@ -101,6 +69,44 @@
 				this.selectedEvent = this.editingEvent;
 				this.editingEvent = BLANK_EVENT;
 				this.eventsChanged();
+			},
+			ready: function() {
+				console.log('=====Here\'s where you should load this.events from chrome storage=====');
+				// Remove the rest of this method when you do.
+
+				this.events = [{
+					color: '#0066ff',
+					description: 'Test description',
+					duration: 525,
+					isPublic: false,
+					location: 'Test Location 1',
+					name: 'Test Name 1',
+					start: 1375702200000
+				}, {
+					color: '#009900',
+					description: 'Test description',
+					duration: 30,
+					isPublic: true,
+					location: '',
+					name: 'Test Name 2 test test test test test test test test test the end',
+					start: 1375693200000
+				}, {
+					color: '#990000',
+					description: 'Test description',
+					duration: 90,
+					isPublic: false,
+					location: 'Test Location 3 test test test test test test test',
+					name: 'Test Name 3',
+					start: 1375696800000
+				}, {
+					color: '#990099',
+					description: 'Test description',
+					duration: 120,
+					isPublic: true,
+					location: 'Test Location 4',
+					name: 'Test Name 4',
+					start: 1375684200000
+				}];
 			}
 		});
 	</script>
