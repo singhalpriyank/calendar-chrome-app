@@ -51,7 +51,7 @@
 				<div>
 					<calendar-color-button value="{{event.color}}"></calendar-color-button>
 					<polymer-ui-icon-button src="../assets/edit.png" on-click="onEditClick"></polymer-ui-icon-button>
-					<polymer-ui-icon-button icon="trash"></polymer-ui-icon-button>
+					<polymer-ui-icon-button icon="trash" on-click="onDeleteClick"></polymer-ui-icon-button>
 				</div>
 			</polymer-ui-toolbar>
 
@@ -88,6 +88,9 @@
 			},
 			onBackClick: function() {
 				this.fire('calendar-event-details-done');
+			},
+			onDeleteClick: function() {
+				this.fire('calendar-event-delete', {event: this.event});
 			},
 			onEditClick: function() {
 				this.fire('calendar-event-details-edit', {event: this.event});
