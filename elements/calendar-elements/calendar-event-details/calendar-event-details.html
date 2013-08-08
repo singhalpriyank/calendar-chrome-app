@@ -72,7 +72,10 @@
 	</template>
 	<script>
 		Polymer('calendar-event-details', {
-			event: {},
+			event: {
+				duration: 0,
+				start: 0
+			},
 			get date() {
 				return new Date(this.event.start).toDateString();
 			},
@@ -86,7 +89,7 @@
 				this.fire('calendar-event-details-done');
 			},
 			onEditClick: function() {
-				this.fire('calendar-event-details-edit');
+				this.fire('calendar-event-details-edit', {event: this.event});
 			}
 		});
 	</script>

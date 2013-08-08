@@ -28,14 +28,14 @@
 		</style>
 
 		<div class="wrapper">
-			<calendar-day-view id="calendar-day-view" events="{{events}}" start="{{viewStart}}" on-calendar-event-details="onCalendarEventDetails" class="{{hidden: selectedEvent.color}}"></calendar-day-view>
-			<calendar-event-details event="{{selectedEvent}}" on-calendar-event-details-done="onCalendarEventDetailsDone"  on-calendar-event-details-edit="onCalendarEventDetailsEdit" class="{{hidden: !selectedEvent.color || editing}}"></calendar-event-details>
-			<calendar-event-edit event="{{selectedEvent}}" on-calendar-event-edit-done="onCalendarEventEditDone" class="{{hidden: !selectedEvent.color || !editing}}"></calendar-event-edit>
+			<calendar-day-view id="calendar-day-view" events="{{events}}" start="{{viewStart}}" on-calendar-event-details="onCalendarEventDetails" class="{{hidden: selectedEvent.color || editingEvent.color}}"></calendar-day-view>
+			<calendar-event-details event="{{selectedEvent}}" on-calendar-event-details-done="onCalendarEventDetailsDone"  on-calendar-event-details-edit="onCalendarEventDetailsEdit" class="{{hidden: !selectedEvent.color}}"></calendar-event-details>
+			<calendar-event-edit event="{{editingEvent}}" on-calendar-event-edit-done="onCalendarEventEditDone" class="{{hidden: !editingEvent.color}}"></calendar-event-edit>
 		</div>
 	</template>
 	<script>
 		Polymer('calendar-app', {
-			editing: false,
+			editingEvent: null,
 			events: [{
 				color: '#0066ff',
 				description: 'Test description',
@@ -71,17 +71,24 @@
 			}],
 			selectedEvent: null,
 			viewStart: 1375660800000,
+			eventsChanged: function() {
+				console.log('test');
+			},
 			onCalendarEventDetails: function(event) {
 				this.selectedEvent = event.detail.event;
 			},
 			onCalendarEventDetailsDone: function() {
 				this.selectedEvent = null;
+				this.eventsChanged();
 			},
-			onCalendarEventDetailsEdit: function() {
-				this.editing = true;
+			onCalendarEventDetailsEdit: function(event) {
+				this.selectedEvent = null;
+				this.editingEvent = event.detail.event;
 			},
 			onCalendarEventEditDone: function() {
-				this.editing = false;
+				this.selectedEvent = this.editingEvent;
+				this.editingEvent = null;
+				this.eventsChanged();
 			}
 		});
 	</script>

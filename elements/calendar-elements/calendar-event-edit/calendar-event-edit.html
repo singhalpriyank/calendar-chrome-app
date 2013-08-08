@@ -3,7 +3,7 @@
 <link rel="import" href="../../polymer-ui-elements/polymer-ui-toggle-button/polymer-ui-toggle-button.html">
 <link rel="import" href="../calendar-color-button/calendar-color-button.html">
 
-<polymer-element name="calendar-event-edit">
+<polymer-element name="calendar-event-edit" attributes="event">
 	<template>
 		<style>
 			@host {
@@ -22,11 +22,18 @@
 			}
 
 			input,
-			label,
 			textarea {
 				display: block;
 				margin-bottom: 10px;
 				width: 100%;
+			}
+
+			label {
+				display: flex;
+			}
+
+			label > input {
+				flex: 1;
 			}
 
 			.wrapper {
@@ -59,19 +66,19 @@
 			</polymer-ui-toolbar>
 
 			<div class="scrollable">
-				<div class="header" style="background: red;">
-					<calendar-color-button></calendar-color-button>
+				<div class="header" style="background: {{event.color}};">
+					<calendar-color-button value="{{event.color}}"></calendar-color-button>
 				</div>
 
 				<div>
-					<input placeholder="Event Name"></input>
-					<input placeholder="Location"></input>
-					<textarea placeholder="Description"></textarea>
+					<input placeholder="Event Name" value="{{event.name}}"></input>
+					<input placeholder="Location" value="{{event.location}}"></input>
+					<textarea placeholder="Description" value="{{event.description}}"></textarea>
 					<label>
-						From: <input type="datetime-local" placeholder="Start"></input>
+						<input type="datetime-local" placeholder="Start" value="{{start}}"></input>
 					</label>
 					<label>
-						To: <input type="datetime-local" placeholder="End"></input>
+						<input type="number" placeholder="Duration" value="{{event.duration}}"></input> minutes
 					</label>
 					<polymer-ui-toggle-button onCaption="Public" offCaption="Private" value="false"></polymer-ui-toggle-button>
 				</div>
@@ -81,6 +88,15 @@
 	</template>
 	<script>
 		Polymer('calendar-event-edit', {
+			event: {
+				start: 0
+			},
+			get start() {
+				return new Date(this.event.start - new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0];
+			},
+			set start(newValue) {
+				this.event.start = Date.parse(newValue) + new Date().getTimezoneOffset() * 60000;
+			},
 			onCancelClick: function() {
 				// TODO: revert event
 				this.fire('calendar-event-edit-done');
