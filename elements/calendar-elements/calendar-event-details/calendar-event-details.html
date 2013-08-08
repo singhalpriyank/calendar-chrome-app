@@ -57,7 +57,7 @@
 
 			<div class="scrollable">
 				<div class="header" style="background: {{event.color}};">
-					<h2>{{event.name}}</h2>
+					<h2>{{event.name || '(untitled)'}}</h2>
 					<div>{{date}} at {{start}} - {{end}}</div>
 					<div>{{event.location}}</div>
 				</div>
