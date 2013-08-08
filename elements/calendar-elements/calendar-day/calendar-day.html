@@ -33,7 +33,7 @@
 			}
 		</style>
 		<div class="wrapper">
-			<ul>
+			<ul on-click="onBackgroundClick">
 				<li></li>
 				<li></li>
 				<li></li>
@@ -70,6 +70,11 @@
 			events: [],
 			onEventDetailsClick: function(event) {
 				this.fire('calendar-event-details', {event: event.target.event});
+			},
+			onBackgroundClick: function(event) {
+				this.fire('calendar-event-create', {
+					start: (this.start + event.toElement.offsetTop / 5 * 360000)
+				});
 			}
 		});
 	</script>
